@@ -1,0 +1,22 @@
+.header h1{
+color: orangered;
+margin-top: 16px;
+font-size: 48px;
+font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+text-shadow: 5px 2px 4px grey;
+}
+.header img{
+    margin-top:1px;
+    border: none;
+    background-color: #dadbe4;
+}
+.header{
+    background-color: rgba(236, 233, 219, 0.247);
+}
+.header h3{
+    margin-top: 15px;
+    color: orangered;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 22px;
+    text-shadow: 5px 2px 4px grey;
+}

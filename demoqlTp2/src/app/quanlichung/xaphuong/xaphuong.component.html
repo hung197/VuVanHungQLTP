@@ -1,0 +1,89 @@
+<nz-table #basicTable [nzData]="xaPhuongList" [nzPageSize]="metadata?.pageSize" [nzTotal]="metadata?.totalCount" [nzPageIndex]="metadata?.currentPage" [nzFrontPagination]="false" 
+[nzShowSizeChanger]=true [nzShowQuickJumper]=true (nzPageIndexChange)="abc($event)">
+  <thead>
+    <tr>
+      <th>Mã Xã Phường</th>
+      <th>Tên Xã Phường</th>
+      <th>Tên Quận</th>
+      <th>Action</th>
+      <th>
+        <button nz-button [nzType]="'primary'" (click)="showAdd()"><span>Thêm
+            mới</span></button>
+        <nz-modal [(nzVisible)]="isVisible2" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter"
+          (nzOnCancel)="handleCancel()">
+          <ng-template #modalTitle>Thêm Mới</ng-template>
+          <ng-template #modalContent>
+            <form nz-form>
+              <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Tên Quận Huyện:</nz-form-label>
+                <nz-form-control [nzSm]="18" [nzXs]="24">
+                  <nz-select [(ngModel)]="MaQuanHuyen" [ngModelOptions]="{standalone: true}"
+                    nzPlaceHolder="Chọn quận/huyện">
+                    <nz-option *ngFor="let item of quanHuyenList" [nzValue]="item.maQuanHuyen"
+                      nzLabel={{item.tenQuanHuyen}}>
+                    </nz-option>
+                  </nz-select>
+                </nz-form-control>
+              </nz-form-item>
+              <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Tên Xã Phường</nz-form-label>
+                <nz-form-control [nzSm]="18" [nzXs]="24" nzErrorTip="Nhập tên xã phường!">
+                  <input nz-input [(ngModel)]="TenXaPhuong" [ngModelOptions]="{standalone: true}" (keypress)="onKeyPress($event)"/>
+
+                </nz-form-control>
+              </nz-form-item>
+            </form>
+          </ng-template>
+          <ng-template #modalFooter>
+            <button nz-button nzType="default" (click)="handleCancel()">Hủy</button>
+            <button nz-button nzType="primary" (click)="addClick()">Thêm Mới</button>
+          </ng-template>
+
+        </nz-modal>
+
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let dataitem of basicTable.data ">
+      <td>{{dataitem.maXaPhuong}}</td>
+      <td>{{dataitem.tenXaPhuong}}</td>
+      <td>{{dataitem.quanHuyen?.tenQuanHuyen}}</td>
+     <td><button (click)="showModal(dataitem)"><i nz-icon nzType="edit" nzTheme="outline" ></i> Update</button>&nbsp;
+       <button (click)="deleteClick(dataitem.maXaPhuong)"> <i nz-icon nzDanger nzType="delete" nzTheme="outline"></i> Delete </button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+<nz-modal [(nzVisible)]="isVisible" [nzTitle]="modalTitleSua" [nzContent]="modalContentSua" [nzFooter]="modalFooterSua"
+  (nzOnCancel)="handleCancel()">
+  <ng-template #modalTitleSua>Sửa</ng-template>
+
+  <ng-template #modalContentSua>
+    <form nz-form>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Tên Quận Huyện:</nz-form-label>
+        <nz-form-control [nzSm]="18" [nzXs]="24">
+          <nz-select [(ngModel)]="MaQuanHuyen" disabled [ngModelOptions]="{standalone: true}">
+            <nz-option *ngFor="let item of quanHuyenList" [nzValue]="item.maQuanHuyen" nzLabel={{item.tenQuanHuyen}}>
+            </nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+
+
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Tên Xã Phường</nz-form-label>
+        <nz-form-control [nzSm]="18" [nzXs]="24" nzErrorTip="Nhập tên quận huyện!">
+          <input  nz-input [(ngModel)]="TenXaPhuong" [ngModelOptions]="{standalone: true}" (keypress)="onKeyUpdate($event)"/>
+
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+
+  </ng-template>
+  <ng-template #modalFooterSua>
+    <button nz-button nzType="default" (click)="handleCancel()">Hủy</button>
+    <button nz-button nzType="primary" (click)="updateXaPhuong()">Sửa</button>
+  </ng-template>
+</nz-modal>

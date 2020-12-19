@@ -1,0 +1,38 @@
+
+<nz-sider>
+    <div class="wrapper">
+    
+     
+    
+        <ul nz-menu nzMode="inline" nzTheme="dark">
+          <!-- <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="isCollapsed ? 'Navigation One' : ''" nzSelected>
+            <i nz-icon nzType="mail"></i>
+            <span>Navigation One</span>
+          </li> -->
+          <li nz-submenu nzTitle="Quản Lí Đơn Vị" nzIcon="appstore">
+            <ul>
+              <li nz-menu-item><a routerLink="thanhpho">Quản Lí Thành Phố</a></li>
+              <li nz-menu-item><a routerLink="quanhuyen">Quản Lí Quận Huyện</a></li>
+              <li nz-menu-item><a routerLink="xaphuong">Quản lí Xã Phường</a></li>
+              <li nz-menu-item><a routerLink="baocao">Quản lí Báo Cáo</a></li>
+              <li nz-menu-item><a routerLink="baocao2">Quản lí Báo Cáo(ViewModels)</a>
+              </li>
+              
+              <!-- <li nz-submenu nzTitle="Submenu">
+                <ul>
+                  <li nz-menu-item>Option 7</li>
+                  <li nz-menu-item>Option 8</li>
+                </ul>
+              </li> -->
+            </ul>
+          </li>
+          <!-- <li nz-submenu nzTitle="Navigation Three" nzIcon="setting">
+            <ul>
+              <li nz-menu-item>Option 9</li>
+              <li nz-menu-item>Option 10</li>
+              <li nz-menu-item>Option 11</li>
+            </ul>
+          </li> -->
+        </ul>
+      </div>
+</nz-sider>

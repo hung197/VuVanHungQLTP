@@ -1,0 +1,23 @@
+
+<nz-table [nzNoResult]="null" #basicTable [nzData]="ThanhPhoList">
+    <thead>
+      <tr>
+        <th>Thành phố </th>
+        <th>Tên Quận</th>
+        <th>Tên Phường</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of basicTable.data  ">
+        <td>
+          {{item.tenTp}}
+        </td>
+        <td>
+          {{item.tenQuanHuyen}}
+        </td>
+        <td>
+          {{item.tenXaPhuong}}
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>

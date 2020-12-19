@@ -1,0 +1,48 @@
+<nz-table #basicTable [nzData]="thanhphoList" [nzPageSize]="meta?.pageSize" 
+[nzTotal]="meta?.totalCount" [nzPageIndex]="meta?.currentPage" [nzFrontPagination]="false" 
+[nzBordered]=true (nzPageIndexChange)="abc($event)" [nzOuterBordered]=true>
+    <thead>
+        <tr>
+            <th>Mã Thành phố</th>
+            <th>Tên Thành phố </th>
+            <th>Action</th>
+            <th>
+                <button nz-button  (click)="AddForm()">
+                   <i nz-icon nzType="form" nzTheme="outline"></i> Thêm Mới
+                </button>
+                <nz-modal nzOkText="Thêm mới" nzCancelText="Hủy" [(nzVisible)]="isVisible2" nzTitle="Thêm mới" (nzOnCancel)="handleCancel()"
+                    (nzOnOk)="addClick()">
+                     <ng-container *nzModalContent>
+                        <label> Tên thành phố :
+                            <input type="text" nz-input placeholder="tên thành phố" [(ngModel)]="tenTp"
+                                (keypress)="handleOk($event)">
+                        </label>
+                    </ng-container>     
+                </nz-modal>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let dataitem of basicTable.data">
+            <td>{{dataitem.maTp}}</td>
+            <td>{{dataitem.tenTp}}</td>
+            <td>
+               <button (click)="showModal(dataitem)"><i nz-icon nzType="edit" nzTheme="outline" [nzSpin]=true></i>Update</button>&nbsp;
+                <button  (click)="DeleteClick(dataitem.maTp)"><i nz-icon nzDanger nzType="delete" nzTheme="outline"  [nzRotate]=10></i>Delete</button>
+                <nz-modal [(nzVisible)]="isVisible" [nzTitle]="modalTitle" [nzContent]="modalContent"
+                    [nzFooter]="modalFooter" (nzOnCancel)="handleCancel()">
+                    <ng-template #modalTitle>Sửa</ng-template>
+
+                    <ng-template #modalContent>
+                        <label> Tên thành phố :
+                            <input type="text" nz-input placeholder="tên thành phố " [(ngModel)]="tenTp"
+                                (keyup.enter)="updateThanhPho()">
+                        </label>
+                    </ng-template>
+                    <ng-template #modalFooter>
+                        <button nz-button nzType="default" (click)="handleCancel()">Hủy</button>
+                        <button nz-button nzType="primary" (click)="updateThanhPho()">Sửa</button>
+                    </ng-template>
+                </nz-modal>
+            </td>
+        </tr>
